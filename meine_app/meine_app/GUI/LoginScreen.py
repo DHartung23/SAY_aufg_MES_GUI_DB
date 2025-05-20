@@ -7,7 +7,7 @@ from kivy.uix.button import Button
 
 class LoginScreen(Screen):
     def __init__(self, **kwargs):
-            super().__init__(**kwargs)
+            super(LoginScreen, self).__init__(**kwargs)
 
             button = Button(text='Klick mich!')
             button.bind(on_press=self.login)

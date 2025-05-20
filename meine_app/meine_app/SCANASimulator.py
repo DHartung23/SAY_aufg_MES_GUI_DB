@@ -36,11 +36,13 @@ class SCANASimulator:
                         produzierendeProzent = random.uniform(self.__mindestProzent, self.__maximalProzent)
                         produzierendeEinheiten = math.ciel( produzierendeProzent * produktionsauftag.getAvisierteMenge())
 
-
                         if produktionsauftag.getMenge() + produzierendeEinheiten > produktionsauftag.getAvisierteMenge():
                             produzierendeEinheiten = produktionsauftag.getAvisierteMenge() - produktionsauftag.getMenge()
 
                         produktionsauftag.produce_units(produzierendeEinheiten)
+
+                        if produktionsauftag.getMenge() == produktionsauftag.getAvisierteMenge():
+                            produktionsauftag.finish()
 
             # Warten bis zur nächsten Runden
             time.sleep(self.__updateZeit)

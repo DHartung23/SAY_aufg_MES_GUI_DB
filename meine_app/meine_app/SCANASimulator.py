@@ -13,7 +13,7 @@ class SCANASimulator:
         self.__mindestProzent = mindestProzent
         self.__maximalProzent = maximalProzent
 
-        self.__thread = threading.Thread( target=self.__run())
+        self.__thread = threading.Thread( target=self.__run)
         self.__stopEvent = threading.Event()
         self.__started = False
 

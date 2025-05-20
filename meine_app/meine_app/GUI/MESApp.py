@@ -8,3 +8,11 @@ class MESApp(App):
     def build(self):
         self.__screenmanager = ScreenManager()
         self.__screenmanager.add_widget(LoginScreen(name='login'))
+
+        return self.__screenmanager
+
+    def login(self, *args):
+        print("Eingeloggt!")
+
+if __name__ == '__main__':
+    MESApp().run()

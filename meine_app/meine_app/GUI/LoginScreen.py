@@ -1,11 +1,12 @@
 from tkinter import Button
-from turtle import Screen
 
-from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.boxlayout import BoxLayout
 
 
-class LoginScreen(Screen):
+class LoginScreen(BoxLayout):
     def build(self):
         self.__loginButton = Button(text='Login')
         self.__loginButton.bind(on_press= self.parent.login)
-        return self.__loginButton
+
+        self.add_widget(self.__loginButton)
+        return self

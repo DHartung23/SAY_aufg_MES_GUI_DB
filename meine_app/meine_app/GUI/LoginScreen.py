@@ -1,12 +1,17 @@
 from tkinter import Button
 
-from kivy.uix.boxlayout import BoxLayout
+from kivy.app import App
+from kivy.uix.screenmanager import Screen
+from kivy.uix.button import Button
 
 
-class LoginScreen(BoxLayout):
-    def build(self):
-        self.__loginButton = Button(text='Login')
-        self.__loginButton.bind(on_press= self.parent.login)
+class LoginScreen(Screen):
+    def __init__(self, **kwargs):
+            super().__init__(**kwargs)
 
-        self.add_widget(self.__loginButton)
-        return self
+            button = Button(text='Klick mich!')
+            button.bind(on_press=self.login)
+            self.add_widget(button)
+
+    def login(self, *args):
+        App.get_running_app().login()

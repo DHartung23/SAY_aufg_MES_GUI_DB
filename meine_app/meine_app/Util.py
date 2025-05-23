@@ -49,8 +49,8 @@ class Util:
     _SQL_GET_LINIE_DATA_QUERY = """
     SELECT * FROM Linie WHERE LinienID = %s;
     """
-    _SQL_GET_AUFTRAG_DATA_QUERY = """
-    SELECT * FROM Auftrag WHERE BestellNr = %s;
+    _SQL_GET_ALL_AUFTRAG_DATA_QUERY = """
+    SELECT * FROM Auftrag;
     """
 
 
@@ -141,6 +141,11 @@ class Util:
         else:
             print(f"FEHLER: Unbekannter Objekttyp {type(obj)} geht nich QwQ.")
 
+    @staticmethod
+    def getAuftragFromDatenbak(self):
+        with transaction.atomic():
+            with connection.cursor() as cursor:
+                cursor.execute(Util._SQL_GET_ALL_AUFTRAG_DATA_QUERY)
+                result = cursor.fetchall()
+                print(result)
 
-    # def get_data(self,):
-    #     if isinstance(obj, Produktionsauftrag):

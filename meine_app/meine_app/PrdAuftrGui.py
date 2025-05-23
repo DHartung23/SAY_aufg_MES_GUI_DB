@@ -111,8 +111,8 @@ class gridLayOut(GridLayout):
 
 
     def press(self, instance):
-        name = self.produktName.text
-        menge = self.avisierteMenge.text
+        name = self.produktName.text            # Timo Kleinewächte hat gesagt da muss ".text" hin
+        menge = self.avisierteMenge.text        # hab aber vergessen warum
 
         pa : Produktionsauftrag = Produktionsauftrag(name, menge) #initialiseirt Obj mit parametern ausm dings
         Util.save_to_db(pa) # pakct das in Auftrag Datenbank

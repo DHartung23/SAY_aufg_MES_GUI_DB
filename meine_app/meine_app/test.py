@@ -3,7 +3,7 @@ from kivy.uix.scrollview import ScrollView
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.core.window import Window
-
+from Util import Util
 class ScrollButtonApp(App):
     def build(self):
         root = BoxLayout(orientation='vertical')
@@ -20,9 +20,10 @@ class ScrollButtonApp(App):
         # Beispielsweise 10 Buttons
         "TODO:"
         "Noah: die sschleife sachen aus DB holen"
+        liste=[]
+        Util.getAuftragFromDatenbak(liste)
 
-
-        for i in range(10):
+        for i in liste:
             btn = Button(text=f"Button {i+1}", size_hint_y=None, height=button_height)
             button_container.add_widget(btn)
 

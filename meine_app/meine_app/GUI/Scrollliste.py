@@ -2,7 +2,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.scrollview import ScrollView
 
-
+""
 class Scrollliste(ScrollView):
     def __init__(self, einträge, beiAuswahl = None, farbe_ausgewählt = (1, 1, 1, 0.5), farbe_nicht_ausgewählt=(1, 1, 1, 0.5), **kwargs):
         super(Scrollliste, self).__init__(**kwargs)

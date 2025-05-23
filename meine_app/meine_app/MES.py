@@ -1,4 +1,4 @@
-from Produktionslinie import *
+from meine_app.meine_app.objects.Produktionslinie import *
 
 class MES:
     def __init__(self):

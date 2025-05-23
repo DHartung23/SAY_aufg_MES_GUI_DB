@@ -18,6 +18,10 @@ class ScrollButtonApp(App):
         button_height = Window.height * 0.2
 
         # Beispielsweise 10 Buttons
+        "TODO:"
+        "Noah: die sschleife sachen aus DB holen"
+
+
         for i in range(10):
             btn = Button(text=f"Button {i+1}", size_hint_y=None, height=button_height)
             button_container.add_widget(btn)

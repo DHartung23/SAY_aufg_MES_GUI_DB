@@ -6,7 +6,7 @@ import os
 import django
 
 # Konfiguriere die Django-Einstellungen
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'meine_app.meine_app.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'meine_app.meine_app.Stuff.settings')
 
 # Initialisiere Django
 django.setup()

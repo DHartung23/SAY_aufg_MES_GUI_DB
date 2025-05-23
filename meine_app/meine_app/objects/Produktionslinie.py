@@ -1,10 +1,11 @@
 
-from Produktionsauftrag import *
 import django
 import os
+from meine_app.meine_app.objects.Produktionsauftrag import Produktionsauftrag
+
 
 class Produktionslinie:
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', '.meine_app\meine_app\settings.py')  # <- Anpassen!
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'meine_app.meine_app.Stuff.settings')  # <- Anpassen!
     django.setup()
     def __init__(self, name : str):
         self.__name = name

@@ -1,6 +1,6 @@
 from django.db import connection, transaction
-from Produktionslinie import Produktionslinie
-from Produktionsauftrag import Produktionsauftrag
+from meine_app.meine_app.objects.Produktionslinie import Produktionslinie
+from meine_app.meine_app.objects.Produktionsauftrag import Produktionsauftrag
 import os
 import django
 
@@ -46,6 +46,13 @@ class Util:
         SET LinienID = %s
         WHERE BestellNr = %s;
         """
+    _SQL_GET_LINIE_DATA_QUERY = """
+    SELECT * FROM Linie WHERE LinienID = %s;
+    """
+    _SQL_GET_AUFTRAG_DATA_QUERY = """
+    SELECT * FROM Auftrag WHERE BestellNr = %s;
+    """
+
 
 
     #Speichert nh Produktionslinie in der Linie Tabelle.
@@ -133,3 +140,7 @@ class Util:
             Util._save_produktionslinie(obj)       # warum is das obj gelb chat? - "Type 'Produktionslinie' doesn't have expected attribute 'getLinienID'"
         else:
             print(f"FEHLER: Unbekannter Objekttyp {type(obj)} geht nich QwQ.")
+
+
+    # def get_data(self,):
+    #     if isinstance(obj, Produktionsauftrag):

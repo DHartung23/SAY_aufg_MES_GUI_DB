@@ -46,7 +46,7 @@ class Util:
         SET LinienID = %s
         WHERE BestellNr = %s;
         """
-    _SQL_GET_LINIE_DATA_QUERY = """
+    _SQL_GET_ALL_LINIE_DATA_QUERY = """
     SELECT * FROM Linie WHERE LinienID = %s;
     """
     _SQL_GET_ALL_AUFTRAG_DATA_QUERY = """
@@ -142,10 +142,24 @@ class Util:
             print(f"FEHLER: Unbekannter Objekttyp {type(obj)} geht nich QwQ.")
 
     @staticmethod
-    def getAuftragFromDatenbak(self):
+    def getAuftragFromDatenbak():
+        try:
+            with transaction.atomic():
+                with connection.cursor() as cursor:
+                    cursor.execute(Util._SQL_GET_ALL_AUFTRAG_DATA_QUERY)
+                    result = cursor.fetchall()
+                    # print(result) # Debug-Ausgabe, kann entfernt werden
+                    return result
+        except Exception as e:
+            print(f"Fehler beim Abrufen der Daten aus der Datenbank: {e}")
+            # Gib eine leere Liste zurück, damit die App nicht abstürzt
+            return []
+
+    @staticmethod
+    def getLinieFromDatenbak(self,):
         with transaction.atomic():
             with connection.cursor() as cursor:
-                cursor.execute(Util._SQL_GET_ALL_AUFTRAG_DATA_QUERY)
+                cursor.execute(Util._SQL_GET_ALL_LINIE_DATA_QUERY)
                 result = cursor.fetchall()
-                print(result)
-
+                print(result[1][2])
+                return result

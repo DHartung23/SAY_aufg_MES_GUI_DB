@@ -20,11 +20,10 @@ class ScrollButtonApp(App):
         # Beispielsweise 10 Buttons
         "TODO:"
         "Noah: die sschleife sachen aus DB holen"
-        liste=[]
-        Util.getAuftragFromDatenbak(liste)
+        liste = Util.getAuftragFromDatenbak()
 
-        for i in liste:
-            btn = Button(text=f"Button {i+1}", size_hint_y=None, height=button_height)
+        for auftrag in liste:
+            btn = Button(text=f"Auftrag: {auftrag[1]}", size_hint_y=None, height=button_height)
             button_container.add_widget(btn)
 
         scroll_view.add_widget(button_container)

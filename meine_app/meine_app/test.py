@@ -3,33 +3,48 @@ from kivy.uix.scrollview import ScrollView
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.core.window import Window
-from Util import Util
+from meine_app.meine_app.Util import Util
 class ScrollButtonApp(App):
-    def build(self):
-        root = BoxLayout(orientation='vertical')
 
-        scroll_view = ScrollView(size_hint=(1, 1))
+    def __init__(self, **kwargs):
+        super(ScrollButtonApp, self).__init__(**kwargs)
+        self.root = BoxLayout(orientation='vertical')
+
+        self.scroll_view = ScrollView(size_hint=(1, 1))
 
         # Container für Buttons
-        button_container = BoxLayout(orientation='vertical', size_hint_y=None)
-        button_container.bind(minimum_height=button_container.setter('height'))
+        self.button_container = BoxLayout(orientation='vertical', size_hint_y=None)
+        self.button_container.bind(minimum_height=self.button_container.setter('height'))
 
         # Fensterhöhe zum Berechnen der Buttonhöhe (20% davon)
-        button_height = Window.height * 0.2
+        self.button_height = Window.height * 0.2
+
+    def build(self):
+
 
         # Beispielsweise 10 Buttons
-        "TODO:"
-        "Noah: die sschleife sachen aus DB holen"
-        liste = Util.getAuftragFromDatenbak()
+
+        self.showAuftrag(Util.getLinieFromDatenbak())
+
+
+        self.showLinie(Util.getAuftragFromDatenbak())
+
+        self.scroll_view.add_widget(self.button_container)
+        self.root.add_widget(self.scroll_view)
+
+        return self.root
+
+    def showAuftrag(self, liste : list):
 
         for auftrag in liste:
-            btn = Button(text=f"Auftrag: {auftrag[1]}", size_hint_y=None, height=button_height)
-            button_container.add_widget(btn)
+            btn = Button(text=f"Auftrag: {auftrag[1]}", size_hint_y=None, height=self.button_height)
+            self.button_container.add_widget(btn)
 
-        scroll_view.add_widget(button_container)
-        root.add_widget(scroll_view)
+    def showLinie(self, liste : list):
 
-        return root
+        for linie in liste:
+            btn = Button(text=f"Linie: {Linie[1]}", size_hint_y=None, height=self.button_height)
+            self.button_container.add_widget(btn)
 
 if __name__ == '__main__':
     ScrollButtonApp().run()

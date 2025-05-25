@@ -39,3 +39,4 @@ class Scrollliste(ScrollView):
 
         if self.__beiAuswahl:
             self.__beiAuswahl()
+

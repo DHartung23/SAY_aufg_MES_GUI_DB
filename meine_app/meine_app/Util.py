@@ -47,7 +47,7 @@ class Util:
         WHERE BestellNr = %s;
         """
     _SQL_GET_ALL_LINIE_DATA_QUERY = """
-    SELECT * FROM Linie WHERE LinienID = %s;
+    SELECT * FROM Linie;
     """
     _SQL_GET_ALL_AUFTRAG_DATA_QUERY = """
     SELECT * FROM Auftrag;
@@ -156,10 +156,10 @@ class Util:
             return []
 
     @staticmethod
-    def getLinieFromDatenbak(self,):
+    def getLinieFromDatenbak():
         with transaction.atomic():
             with connection.cursor() as cursor:
                 cursor.execute(Util._SQL_GET_ALL_LINIE_DATA_QUERY)
                 result = cursor.fetchall()
-                print(result[1][2])
+
                 return result

@@ -1,0 +1,31 @@
+<HomeScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(40)
+        spacing: dp(20)
+
+
+        Label:
+            text: "Manage orders"
+            halign: "center"
+            font_style: "H5"
+
+        TextField:
+            id: prod_menu_field
+            hint_text: "Production Line"
+            readonly: True
+            icon_right: "arrow-down"
+            on_focus:
+                if self.focus: root.open_prod_menu()
+            size_hint_x: 0.4
+            pos_hint: {"center_x": 0.5}
+
+        TextField:
+            id: order_menu_field
+            hint_text: "Order"
+            readonly: True
+            icon_right: "arrow-down"
+            on_focus:
+                if self.focus: root.open_order_menu()
+            size_hint_x: 0.4
+            pos_hint: {"center_x": 0.5}

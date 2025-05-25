@@ -45,7 +45,7 @@ class PrdAuftragScreen(Screen):
             text="Produktionsauftrag",
             font_size="24sp",
             bold=True,
-            color=(1, 1, 1, 1),
+            color=(0, 0, 0, 1),
             size_hint=(1, None),
             height=40,
             halign='center',

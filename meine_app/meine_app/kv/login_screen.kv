@@ -1,0 +1,55 @@
+<LoginScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(20)
+        md_bg_color: app.theme_cls.bg_normal
+
+        Image:
+            source: "../assets/logo.png"
+            size_hint: (None, None)
+            size: dp(250), dp(250)
+            pos_hint: {"center_x": 0.5}
+            allow_stretch: True
+            keep_ratio: True
+
+        MDLabel:
+            text: "Manufacturing Execution System"
+            font_style: "H5"
+            halign: "center"
+            size_hint_y: None
+            height: self.texture_size[1]
+
+        Widget:
+            size_hint_y: None
+            height: dp(30)  # отступ после логотипа
+
+
+        MDTextField:
+            id: username
+            hint_text: "Username"
+            helper_text: "Enter your username"
+            helper_text_mode: "on_focus"
+            icon_right: "account"
+            required: True
+            mode: "rectangle"
+            size_hint_x: 0.7
+            pos_hint: {"center_x": 0.5}
+
+        MDTextField:
+            id: password
+            hint_text: "Password"
+            helper_text: "Enter your password"
+            helper_text_mode: "on_focus"
+            icon_right: "eye-off"
+            password: True
+            required: True
+            mode: "rectangle"
+            size_hint_x: 0.7
+            pos_hint: {"center_x": 0.5}
+
+        MDRectangleFlatButton:
+            text: "Login"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.do_login()
+            

@@ -1,0 +1,37 @@
+<HomeScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(40)
+        spacing: dp(20)
+
+        Image:
+            source: "../assets/logo.png"
+            size_hint: (None, None)
+            size: dp(250), dp(250)
+            pos_hint: {"center_x": 0.5}
+            allow_stretch: True
+            keep_ratio: True
+        MDLabel:
+            text: "Manage orders"
+            halign: "center"
+            font_style: "H5"
+
+        MDTextField:
+            id: prod_menu_field
+            hint_text: "Production Line"
+            readonly: True
+            icon_right: "arrow-down"
+            on_focus:
+                if self.focus: root.open_prod_menu()
+            size_hint_x: 0.4
+            pos_hint: {"center_x": 0.5}
+
+        MDTextField:
+            id: order_menu_field
+            hint_text: "Order"
+            readonly: True
+            icon_right: "arrow-down"
+            on_focus:
+                if self.focus: root.open_order_menu()
+            size_hint_x: 0.4
+            pos_hint: {"center_x": 0.5}

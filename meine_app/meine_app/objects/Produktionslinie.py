@@ -11,9 +11,25 @@ class Produktionslinie:
         self.__name = name
         self.__produktionsaufträge = []
 
+        try:
+            with transaction.atomic():
+                with connection.cursor() as cursor:
+                    cursor.execute("SELECT COUNT(*) FROM Linie;")
+                    result = cursor.fetchone()
+                    self.__linieid = result[0] + 1  # Increment for new
+            print(f"DEBUG: New linieid generated: {self.__linieid}")
+        except Exception as e:
+            print(e)
+            print(f"Fehler beim Generieren der linieid.")
+            self.__linieid = -1  # Handle error
+
 
     def getLinienName(self):
         return self.__name
+
+    def getLinienID(self):
+        return self.__linieid
+
     def add_auftrag(self,auftrag : Produktionsauftrag):
 
         if auftrag in self.__produktionsaufträge:

@@ -15,7 +15,7 @@ class MainApp(MDApp):
         sm.add_widget(LoginScreen(name="login"))
         sm.add_widget(HomeScreen(name="home"))
         sm.add_widget(PrdAuftragScreen(name="prdauftrag"))
-        sm.add_widget(ScrollButtonApp(name="prdauftragView"))
+#        sm.add_widget(ScrollButtonApp(name="prdauftragView"))
 
         return sm
 

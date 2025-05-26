@@ -5,7 +5,7 @@ from kivy.uix.button import Button
 from kivy.core.window import Window
 from meine_app.meine_app.Util import Util
 from kivy.uix.screenmanager import Screen
-class ScrollButtonApp(App):
+class PrdAuftrViewScreen(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs) # 'name' nicht weitergeben!
         self.root = BoxLayout(orientation='vertical')
@@ -44,4 +44,4 @@ class ScrollButtonApp(App):
             self.button_container.add_widget(btn)
 
 if __name__ == '__main__':
-    ScrollButtonApp().run()
+    PrdAuftrViewScreen().run()

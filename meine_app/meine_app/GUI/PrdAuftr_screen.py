@@ -57,7 +57,7 @@ class PrdAuftragScreen(Screen):
         self.produktName = TextInput(multiline=False)
         self.top_grid.add_widget(self.produktName)
 
-        self.top_grid.add_widget(Label(text="avisierteMenge", color=(0, 0, 0, 1)))
+        self.top_grid.add_widget(Label(text="avisierteMenge"))
         self.avisierteMenge = TextInput(multiline=False)
         self.top_grid.add_widget(self.avisierteMenge)
 

@@ -43,8 +43,10 @@ class HomeScreen(Screen):
         self.ids.prod_menu_field.text = option
         self.prod_menu.dismiss()
         print(f"Production Line Option Selected: {option}")
-
-        print(option)
+        if option == "Add":
+            self.manager.current = "prdlinie"
+        if option == "View":
+            self.manager.current = "prdlinieView"
         # Add logic here — open new screen, show popup, etc.
 
     def select_order_option(self, option):

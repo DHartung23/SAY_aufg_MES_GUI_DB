@@ -6,7 +6,7 @@ from kivy.core.window import Window
 from meine_app.meine_app.Util import Util
 from kivy.uix.screenmanager import Screen
 class PrdAuftrViewScreen(Screen):
-    def __init__(self, **kwargs):
+    def __init__(self,a:str, **kwargs):
         super().__init__(**kwargs) # 'name' nicht weitergeben!
         self.root = BoxLayout(orientation='vertical')
 
@@ -16,11 +16,15 @@ class PrdAuftrViewScreen(Screen):
         self.button_container.bind(minimum_height=self.button_container.setter('height'))
 
         self.button_height = Window.height * 0.2
-        print(Util.getAuftragFromDatenbak())
-        self.showAuftrag(Util.getAuftragFromDatenbak())
+        if a == "auftrag":
+            self.showAuftrag(Util.getAuftragFromDatenbak())
+
+        if a == "linie":
+            self.showAuftrag(Util.getLinieFromDatenbak())
+
 
     def build(self):
-        self.showAuftrag(Util.getLinieFromDatenbak())
+        self.showAuftrag(Util.getAuftragFromDatenbak())
         self.scroll_view.add_widget(self.button_container)
         self.root.add_widget(self.scroll_view)
         return self.root

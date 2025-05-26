@@ -7,6 +7,7 @@ from PrdAuftr_screen import PrdAuftragScreen
 #from meine_app.meine_app.test import ScrollButtonApp
 from PrdAuftrView_screen import PrdAuftrViewScreen
 from PrdLinie_screen import PrdLinieScreen
+from PrdLinieView_screen import PrdLinieViewScreen
 
 # Load .kv files
 Builder.load_file("../kv/login_screen.kv")
@@ -20,6 +21,7 @@ class MainApp(MDApp):
         sm.add_widget(PrdAuftragScreen(name="prdauftrag"))
         sm.add_widget(PrdAuftrViewScreen(a="auftrag",name="prdauftragView"))
         sm.add_widget(PrdLinieScreen(name="prdlinie"))
+        sm.add_widget(PrdLinieViewScreen(name="prdlinieView"))
 
         return sm
 

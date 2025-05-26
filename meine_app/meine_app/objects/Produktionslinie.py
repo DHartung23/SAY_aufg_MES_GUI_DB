@@ -1,4 +1,4 @@
-
+from django.db import connection, transaction
 import django
 import os
 from meine_app.meine_app.objects.Produktionsauftrag import Produktionsauftrag

@@ -16,20 +16,20 @@ class PrdAuftrViewScreen(Screen):
         self.button_container.bind(minimum_height=self.button_container.setter('height'))
 
         self.button_height = Window.height * 0.2
-        if a == "auftrag":
-            self.showAuftrag(Util.getAuftragFromDatenbak())
+        print(Util.getAuftragFromDatenbak())
 
-        if a == "linie":
-            self.showAuftrag(Util.getLinieFromDatenbak())
-
-
-    def build(self):
         self.showAuftrag(Util.getAuftragFromDatenbak())
         self.scroll_view.add_widget(self.button_container)
-        self.root.add_widget(self.scroll_view)
-        return self.root
+        self.add_widget(self.scroll_view)
+
+
+
+
+
+
 
     def showAuftrag(self, liste: list):
+        print("test")
         for auftrag in liste:
             btn = Button(text=f"BestellNr: {auftrag[0]} | "
                               f"Produktname: {auftrag[1]} | "

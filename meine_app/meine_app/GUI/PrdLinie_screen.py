@@ -57,15 +57,31 @@ class PrdLinieScreen(Screen):
         self.linieName = TextInput(multiline=False)
         self.top_grid.add_widget(self.linieName)
 
-        self.submit = Button(text="Submit", size_hint=(None, None), size=(100, 40))
+        self.back_button = Button(text="Zurück",
+                                  size_hint=(None, None),
+                                  size=(120, 40),
+                                  background_normal='',
+                                  background_color=(0.2, 0.6, 0.8, 1),  # Blue color
+                                  color=(1, 1, 1, 1),
+                                  bold=True,
+                                  background_down='rgba(0.1,0.4,0.6,1)')
+        self.back_button.bind(on_press=self.go_back)
+
+        self.submit = Button(text="Submit", size_hint=(None, None),
+                             size=(120, 40),
+                             background_normal='',
+                             background_color=(0.2, 0.6, 0.8, 1),  # Blue color
+                             color=(1, 1, 1, 1),
+                             bold=True,
+                             background_down='rgba(0.1,0.4,0.6,1)')
         self.submit.bind(on_press=self.press)
 
         self.layout.add_widget(self.top_grid)
 
         button_box = BoxLayout(orientation='horizontal')
+        button_box.add_widget(self.back_button)
         button_box.add_widget(Widget())
         button_box.add_widget(self.submit)
-        button_box.add_widget(Widget())
 
         self.layout.add_widget(button_box)
         self.add_widget(self.layout)
@@ -84,3 +100,11 @@ class PrdLinieScreen(Screen):
         print("Produktionsauftrag ist " + pl.__repr__())
 
         self.linieName.text = ""
+    def go_back(self, instance):
+        """
+        Navigiert zurück zum Homescreen.
+        """
+        if self.manager:
+            self.manager.current = "home"
+        else:
+            print("ScreenManager nicht verfügbar.")

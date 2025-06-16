@@ -8,7 +8,7 @@ from kivy.uix.screenmanager import Screen
 class PrdAuftrViewScreen(Screen):
     def __init__(self,a:str, **kwargs):
         super().__init__(**kwargs) # 'name' nicht weitergeben!
-        self.root = BoxLayout(orientation='vertical')
+        self.irgendwas = BoxLayout(orientation='vertical')
 
         self.scroll_view = ScrollView(size_hint=(1, 1))
 
@@ -18,12 +18,29 @@ class PrdAuftrViewScreen(Screen):
         self.button_height = Window.height * 0.2
 
         self.showAuftrag(Util.getAuftragFromDatenbak())
+        self.irgendwas.add_widget(self.scroll_view)
 
-
-
-        self.showAuftrag(Util.getAuftragFromDatenbak())
         self.scroll_view.add_widget(self.button_container)
-        self.add_widget(self.scroll_view)
+        self.add_widget(self.irgendwas)
+
+        self.back_button = Button(text="Zurück",
+                                  size_hint=(None, None),
+                                  size=(120, 40),
+                                  background_normal='',
+                                  background_color=(0.2, 0.6, 0.8, 1),  # Blue color
+                                  color=(1, 1, 1, 1),
+                                  bold=True,
+                                  background_down='rgba(0.1,0.4,0.6,1)')
+        self.back_button.bind(on_press=self.go_back)
+        button_box = BoxLayout(orientation='horizontal', size_hint_y=None, height=40)
+        button_box.add_widget(self.back_button)
+        self.irgendwas.add_widget(button_box)
+
+    def go_back(self, instance):
+        if self.manager:
+            self.manager.current = "home"
+        else:
+            print("ScreenManager nicht verfügbar.")
 
 
 

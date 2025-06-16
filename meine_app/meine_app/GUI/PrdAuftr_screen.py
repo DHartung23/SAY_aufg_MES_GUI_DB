@@ -39,7 +39,7 @@ class PrdAuftragScreen(Screen):
         super().__init__(**kwargs)
         self.layout = GridLayout(cols=1, padding=20, spacing=10)
 
-        self.top_grid = GridLayout(cols=2, spacing=10)
+
 
         label = Label(
             text="Produktionsauftrag",
@@ -47,9 +47,11 @@ class PrdAuftragScreen(Screen):
             bold=True,
             color=(0, 0, 0, 1),
             size_hint=(1, None),
-            height=40,
-            halign='center',
-            valign='middle')
+            #height=40,
+            #halign='center',
+            #valign='middle'
+        )
+        self.top_grid = GridLayout(cols=2, spacing=10)
         label.bind(size=lambda *args: setattr(label, 'text_size', label.size))
 
         self.layout.add_widget(label)
@@ -57,23 +59,41 @@ class PrdAuftragScreen(Screen):
         self.produktName = TextInput(multiline=False)
         self.top_grid.add_widget(self.produktName)
 
-        self.top_grid.add_widget(Label(text="avisierteMenge"))
+        self.top_grid.add_widget(Label(text="avisierteMenge", color=(0, 0, 0, 1)))
         self.avisierteMenge = TextInput(multiline=False)
         self.top_grid.add_widget(self.avisierteMenge)
 
         self.layout.add_widget(self.top_grid)
 
-        self.submit = Button(text="Submit", size_hint=(None, None), size=(100, 40))
+        self.back_button = Button(text="Zurück",
+                                  size_hint=(None, None),
+                                  size=(120, 40),
+                                  background_normal='',
+                                  background_color=(0.2, 0.6, 0.8, 1),  # Blue color
+                                  color=(1, 1, 1, 1),
+                                  bold=True,
+                                  background_down='rgba(0.1,0.4,0.6,1)')
+        self.back_button.bind(on_press=self.go_back)
+
+
+        self.submit = Button(text="Submit", size_hint=(None, None),
+                                  size=(120, 40),
+                                  background_normal='',
+                                  background_color=(0.2, 0.6, 0.8, 1),  # Blue color
+                                  color=(1, 1, 1, 1),
+                                  bold=True,
+                                  background_down='rgba(0.1,0.4,0.6,1)')
         self.submit.bind(on_press=self.press)
 
         button_box = BoxLayout(orientation='horizontal')
+        button_box.add_widget(self.back_button)
         button_box.add_widget(Widget())
         button_box.add_widget(self.submit)
-        button_box.add_widget(Widget())
 
-        self.layout.add_widget(button_box)
+
+
         self.add_widget(self.layout)
-
+        self.layout.add_widget(button_box)
         with transaction.atomic():
             with connection.cursor() as cursor:
                 cursor.execute("SELECT COUNT(*) FROM Auftrag;")
@@ -90,6 +110,15 @@ class PrdAuftragScreen(Screen):
 
         self.produktName.text = ""
         self.avisierteMenge.text = ""
+
+    def go_back(self, instance):
+        """
+        Navigiert zurück zum Homescreen.
+        """
+        if self.manager:
+            self.manager.current = "home"
+        else:
+            print("ScreenManager nicht verfügbar.")
 
 
 

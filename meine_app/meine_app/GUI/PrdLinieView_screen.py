@@ -44,7 +44,7 @@ class PrdLinieViewScreen(Screen):
 
     def switchWindow(self, instance, linie_id):
         # Important: Check if the screen already exists in the manager
-        screen_name = f"auftrag_view_linie_{linie_id}"
+        screen_name = f"auftrag_viewlinie{linie_id}"
         if not self.manager.has_screen(screen_name):
             # Create the screen instance only if it doesn't exist
             new_screen = PrdAuftrViewScreen(linienID=linie_id, name=screen_name)

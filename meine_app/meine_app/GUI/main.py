@@ -23,7 +23,7 @@ class MainApp(MDApp):
         sm.add_widget(PrdAuftrViewScreen(name="prdauftragView"))
         sm.add_widget(PrdLinieScreen(name="prdlinie"))
         sm.add_widget(PrdLinieViewScreen(name="prdlinieView"))
-        sm.add_widget(ProductionScreen(name="production"))
+
 
         return sm
 

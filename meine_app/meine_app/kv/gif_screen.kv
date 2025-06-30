@@ -1,0 +1,19 @@
+<GifScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(20)
+        md_bg_color: app.theme_cls.bg_normal
+
+        Image:
+            id: gif_image
+            source: "../assets/cow.gif" # Pfad zu deinem GIF
+            allow_stretch: True       # Erlaubt das Strecken des Bildes
+            keep_ratio: True          # Behält das Seitenverhältnis bei
+            anim_delay: 0        # Standardwert, spielt das GIF automatisch ab
+            anim_loop: 1           # Standardwert, spielt das GIF in einer Schleife ab
+
+        MDRectangleFlatButton:
+            text: 'Zurück zum Start'
+            size_hint_y: 0.1
+            on_press: app.root.current = 'start_screen' # Wechselt zurück

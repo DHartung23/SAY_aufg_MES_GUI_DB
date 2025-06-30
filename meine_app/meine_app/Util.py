@@ -123,7 +123,7 @@ class Util:
         )
 
         try:
-            print("gotcha bitch")
+            print("gotcha bitch")       #gez. timo kleinewächter
             with transaction.atomic():
                 with connection.cursor() as cursor:
                     cursor.execute(Util._SQL_UPDATE_AUFTRAG_LINIENID_QUERY, values_to_update)
@@ -174,3 +174,29 @@ class Util:
                 result = cursor.fetchall()
 
                 return result
+
+    @staticmethod
+    def getUserdata(username):
+        sql_query = "SELECT username, password FROM users WHERE username = %s"
+        conn = None  # Neue Verbindung für diese Methode
+        try:
+            with transaction.atomic():
+                with connection.cursor() as cursor:
+            # Korrekter Aufruf von execute: SQL-String als erstes Argument, Parameter als Tupel
+                    cursor.execute(sql_query, (username,))  # <--- HIER IST DIE KORREKTUR
+                    result = cursor.fetchone()  # fetchone, da du nur einen Benutzer erwartest
+                    return result  # Gibt (username, password) oder None zurück
+        except Exception as e:
+            print(f"Fehler beim Abrufen der Daten aus der Datenbank: {e}")
+            # Gib eine leere Liste zurück, damit die App nicht abstürzt
+            return []
+        finally:
+            if conn:
+                conn.close()
+
+if __name__ == '__main__':
+    a = str(f"'david'")
+    with transaction.atomic():
+        with connection.cursor() as cursor:
+            cursor.execute(f"SELECT username, password FROM users WHERE username = {a}")
+            print(cursor.fetchall())

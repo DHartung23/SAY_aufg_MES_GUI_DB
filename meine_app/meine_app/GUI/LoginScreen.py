@@ -4,7 +4,7 @@ from kivy.app import App
 from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 
-
+#hat Alina gemacht + kv
 class LoginScreen(Screen):
     def __init__(self, **kwargs):
             super(LoginScreen, self).__init__(**kwargs)

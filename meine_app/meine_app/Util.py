@@ -49,9 +49,13 @@ class Util:
     _SQL_GET_ALL_LINIE_DATA_QUERY = """
     SELECT * FROM Linie;
     """
+
     _SQL_GET_ALL_AUFTRAG_DATA_QUERY = """
     SELECT * FROM Auftrag;
     """
+    _SQL_GET_ALL_AUFTRAG_DATA_QUERY_ALT = """
+        select * from Auftrag where LinienID = %s;
+        """
 
 
 
@@ -142,13 +146,18 @@ class Util:
             print(f"FEHLER: Unbekannter Objekttyp {type(obj)} geht nich QwQ.")
 
     @staticmethod
-    def getAuftragFromDatenbak():
+    def getAuftragFromDatenbak(linienID = None):
+        print(linienID)
+
         try:
             with transaction.atomic():
                 with connection.cursor() as cursor:
-                    cursor.execute(Util._SQL_GET_ALL_AUFTRAG_DATA_QUERY)
+                    if linienID is None:
+                        cursor.execute(Util._SQL_GET_ALL_AUFTRAG_DATA_QUERY)
+                    else:
+                        cursor.execute(Util._SQL_GET_ALL_AUFTRAG_DATA_QUERY_ALT, linienID)
                     result = cursor.fetchall()
-                    # print(result) # Debug-Ausgabe, kann entfernt werden
+
                     return result
         except Exception as e:
             print(f"Fehler beim Abrufen der Daten aus der Datenbank: {e}")
@@ -157,6 +166,7 @@ class Util:
 
     @staticmethod
     def getLinieFromDatenbak():
+
         with transaction.atomic():
             with connection.cursor() as cursor:
                 cursor.execute(Util._SQL_GET_ALL_LINIE_DATA_QUERY)

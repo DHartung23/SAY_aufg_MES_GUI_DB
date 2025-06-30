@@ -11,12 +11,13 @@ class PrdLinieViewScreen(Screen):
         self.irgendwas = BoxLayout(orientation='vertical')
         self.scroll_view = ScrollView(size_hint=(1, 1))
 
+
         self.button_container = BoxLayout(orientation='vertical', size_hint_y=None)
         self.button_container.bind(minimum_height=self.button_container.setter('height'))
 
         self.button_height = Window.height * 0.2
-
         self.showLinie(Util.getLinieFromDatenbak())
+
         self.irgendwas.add_widget(self.scroll_view)
 
         self.scroll_view.add_widget(self.button_container)
@@ -36,20 +37,17 @@ class PrdLinieViewScreen(Screen):
         self.irgendwas.add_widget(button_box)
 
     def go_back(self, instance):
-        if self.manager:
-            self.manager.current = "home"
-        else:
-            print("ScreenManager nicht verfügbar.")
-
-
+        self.manager.current = "home"
 
     def showLinie(self, liste: list):
         for linie in liste:
+
             btn = Button(text=f"LinieNr: {linie[0]} | "
                               f"Liniename: {linie[1]} | ",
                          color=(0, 0, 0, 1),
                          size_hint_y=None,
-                         height=self.button_height)
+                         height=self.button_height,
+                         on_press=self.go_back)
 
             self.button_container.add_widget(btn)
 

@@ -155,7 +155,8 @@ class Util:
                     if linienID is None:
                         cursor.execute(Util._SQL_GET_ALL_AUFTRAG_DATA_QUERY)
                     else:
-                        cursor.execute(Util._SQL_GET_ALL_AUFTRAG_DATA_QUERY_ALT, linienID)
+
+                        cursor.execute(Util._SQL_GET_ALL_AUFTRAG_DATA_QUERY_ALT, (int(linienID),))
                     result = cursor.fetchall()
 
                     return result

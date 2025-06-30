@@ -44,7 +44,8 @@ class PrdAuftrViewScreen(Screen):
         else:
             print("ScreenManager nicht verfügbar.")
 
-
+    def switch_to_Auftragsview(self, instance):
+        pass
 
 
 
